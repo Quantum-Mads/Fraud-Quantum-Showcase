@@ -1,0 +1,42 @@
+[project]
+name = "python-schema"
+version = "0.1.0"
+description = "Project for Pytest and environment management with UV."
+authors = [
+    {name = "Your Name", email = "your.email@example.com"}
+]
+license = "MIT"
+readme = "README.md"
+requires-python = ">=3.11.12"
+
+# MAIN (Production) Dependencies
+dependencies = [
+    # Add your core production dependencies here, e.g.:
+    "requests>=2.32.5",
+]
+
+# --- CORRECTED SECTION ---
+[project.optional-dependencies]
+
+# DEVELOPMENT Dependencies (Accessed via 'uv sync --extras dev')
+dev = [
+    "pytest>=8.2.2",
+    "black>=25.9.0",
+    # LINTERS y FORMATTERS
+    "pylint>=3.3.9",  # Agregado Pylint para un análisis estático estricto
+    "isort>=6.1.0",  # Agregado isort para ordenar importaciones
+    # Other development tools:
+    # "ruff>=0.4.8",
+    "pip-audit>=2.9.0"
+]
+
+# PRE-PRODUCTION Dependencies (Accessed via 'uv sync --extras pre-prod')
+pre-prod = [
+    "pydantic>=2.7.4",
+    # Other Pre-Production dependencies:
+    # "mypy>=1.10.0", 
+]
+
+# You can remove the [tool.uv] section entirely since its function is now covered.
+# If you use other UV-specific configurations, you can keep the [tool.uv] table, 
+# but not for defining dependency groups.
