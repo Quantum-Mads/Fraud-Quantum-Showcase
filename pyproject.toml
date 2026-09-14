@@ -1,42 +1,44 @@
 [project]
-name = "python-schema"
+name = "qdistill"
 version = "0.1.0"
-description = "Project for Pytest and environment management with UV."
-authors = [
-    {name = "Your Name", email = "your.email@example.com"}
-]
-license = "MIT"
+description = "Exact tensor-network distillation of trained tree ensembles for explainable card-fraud detection -- public repository for the HSBC problem statement of the 2026 Global Quantum + AI Challenge, Phase 1."
 readme = "README.md"
-requires-python = ">=3.11.12"
-
-# MAIN (Production) Dependencies
+requires-python = ">=3.11"
 dependencies = [
-    # Add your core production dependencies here, e.g.:
-    "requests>=2.32.5",
+    "numpy",
+    "pandas",
+    "pyarrow",
+    "scikit-learn",
+    "xgboost",
+    "catboost",
+    "shap",
+    "matplotlib",
+    "torch",
+    "tensorkrowch==1.1.6",
+    "onnxruntime>=1.29.0",
+    "onnxmltools>=1.16.0",
+    "onnx>=1.22.0",
 ]
 
-# --- CORRECTED SECTION ---
-[project.optional-dependencies]
-
-# DEVELOPMENT Dependencies (Accessed via 'uv sync --extras dev')
+[dependency-groups]
 dev = [
-    "pytest>=8.2.2",
-    "black>=25.9.0",
-    # LINTERS y FORMATTERS
-    "pylint>=3.3.9",  # Agregado Pylint para un análisis estático estricto
-    "isort>=6.1.0",  # Agregado isort para ordenar importaciones
-    # Other development tools:
-    # "ruff>=0.4.8",
-    "pip-audit>=2.9.0"
+    "pytest",
 ]
 
-# PRE-PRODUCTION Dependencies (Accessed via 'uv sync --extras pre-prod')
-pre-prod = [
-    "pydantic>=2.7.4",
-    # Other Pre-Production dependencies:
-    # "mypy>=1.10.0", 
-]
+[tool.uv.sources]
+torch = { index = "pytorch-cpu" }
 
-# You can remove the [tool.uv] section entirely since its function is now covered.
-# If you use other UV-specific configurations, you can keep the [tool.uv] table, 
-# but not for defining dependency groups.
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/qdistill"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,37 @@
+{
+  "seed": 0,
+  "bond_dim": 8,
+  "features": [
+    "V14",
+    "V4",
+    "V8",
+    "V12",
+    "Amount",
+    "V13",
+    "V21",
+    "V11"
+  ],
+  "explained_row": 81,
+  "true_label": 1,
+  "xgboost_probability": 0.9999496936798096,
+  "tensor_train_logit": 9.675436973571777,
+  "decision_threshold_logit": 5.280566605163766,
+  "margin_above_threshold_logit": 4.394870368408012,
+  "attributions": {
+    "V14": 5.226919651031494,
+    "V4": 2.3253068923950195,
+    "V8": -0.11371135711669922,
+    "V12": 0.42440223693847656,
+    "Amount": 0.9233226776123047,
+    "V13": -0.024888992309570312,
+    "V21": 0.9371623992919922,
+    "V11": 1.718224048614502
+  },
+  "largest_single_bin_drop": {
+    "feature": "V11",
+    "direction": "left",
+    "logit_change": -0.2433929443359375,
+    "raw_distance_to_that_boundary": 3.77997056317613
+  },
+  "single_bin_move_would_flip_prediction": false
+}
